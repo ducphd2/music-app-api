@@ -30,9 +30,9 @@ app.use("/api/v1", route);
 // });
 
 app.get("/", (req, res, next) => {
-  const p = path.join(__dirname, "..", "docs.md");
+  const p = `https://github.com/ducph1/music-app-api/blob/master/README.md`;
   res.send(
-    `API for Android Music App. Check out documentation now. <a>${p}</a>`
+    `API for Android Music App. Check out <a href="${p}">documentation</a> now. `
   );
 });
 
