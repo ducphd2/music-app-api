@@ -1,0 +1,29 @@
+@font-face {
+font-family: 'Circular Std Black';
+font-style: normal;
+font-weight: normal;
+src: local('Circular Std Black'), url('Oswald-Bold.ttf') format('ttf');
+}
+
+@font-face {
+font-family: 'Circular Std Book';
+font-style: normal;
+font-weight: normal;
+src: local('Circular Std Book'), url('Oswald-Regular.ttf') format('ttf');
+}
+
+
+@font-face {
+font-family: 'Circular Std Medium';
+font-style: normal;
+font-weight: normal;
+src: local('Circular Std Medium'), url('Oswald-Medium.ttf') format('ttf');
+}
+
+
+@font-face {
+font-family: 'Circular Std Bold';
+font-style: normal;
+font-weight: normal;
+src: local('Circular Std Bold'), url('Oswald-Bold.ttf') format('ttf');
+}

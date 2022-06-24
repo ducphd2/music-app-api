@@ -1,0 +1,41 @@
+
+<%- include('../components/Header/index'); %>
+
+<%
+    const message = errorMessage.length && errorMessage[0] || '';
+    const defaultUsername = username.length && username[0] || '';
+    const defaultPassword = password.length && password[0] || '';
+%> 
+<body>
+    <div class="splash-container">
+        <div class="card">
+            <% if (message) { %>
+                <div class="alert alert-danger" role="alert">
+                    <%= message %> 
+                </div>
+            <% } %>
+            <div class="card-body">
+                <form class="needs-validation" id="login-form" method="POST" action="/dang-nhap">
+                    <div class="form-group"> 
+                        <input required class="form-control form-control-lg" name="username" id="username" type="text" placeholder="Tên đăng nhập" autocomplete="off" value="<%= defaultUsername %>">
+                        <div class="invalid-feedback">
+                            Thiếu tên đăng nhập
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input required class="form-control form-control-lg" name="password" id="password" type="password" placeholder="Mật khẩu" value="<%= defaultPassword %>">
+                        <div class="invalid-feedback">
+                            Thiếu mật khẩu
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Đăng nhập</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<%- include('../components/Footer/MainLibraries'); %>
+<%- include('../components/Footer/index'); %>
+</body>
+</html>

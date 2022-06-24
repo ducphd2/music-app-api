@@ -1,0 +1,85 @@
+
+<%- include('../components/Header/index'); %>
+<%- include('../components/NavBar/index'); %>
+<%- include('../components/SideBar/index'); %>
+
+<% 
+  const {
+    title,
+    topic_id,
+    id,
+    thumbnail,
+  } = payload;
+%> 
+
+<div class="dashboard-wrapper">
+  <div class="container-fluid dashboard-content">
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="page-header">
+          <div class="page-breadcrumb">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/auth/the-loai" class="breadcrumb-link">Thể loại</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tạo mới - Chỉnh sửa thể loại</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div> 
+    </div>
+    <%- include('../components/Message/index'); %>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
+      <% if (id) { %>
+        <form id="deleteForm" method="POST" action="/auth/the-loai/xoa?id=<%= id %>"></form>
+      <% } %> 
+      <form class="needs-validation" id="setting-form" method="POST" onsubmit="submitCategory(event);" action="/auth/the-loai/tao-moi">
+        <input type="hidden" id="id" name="id" value="<%= id %>">
+        <div class="form-group row">
+          <label class="col-12 col-sm-3 col-form-label text-sm-right">Tên thể loại</label>
+          <div class="col-12 col-sm-8 col-lg-6">
+            <input type="text" class="form-control" id="title" required name="title" value="<%= title %>">
+          </div>
+        </div>
+        
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Thumbnail</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+              <div>
+                <input type="text" class="form-control" id="thumbnail" required onchange="changeThumbnail(event);" name="thumbnail" value="<%= thumbnail %>"> 
+              </div>
+              <br />
+              <div>
+                <img width="100" id="thumbnail-img" src="<%= thumbnail || '/assets/images/avatar-1.jpg' %>" alt="">
+              </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Topic</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+                <select id="topic_id" name="topic_id" class="form-control">
+                    <option value="">Chọn topic</option>
+                    <% for( let i = 0; i < topics.length; i++ ) { 
+                        const { id: topicId, name } = topics[i];
+                    %>
+                        <option <%= topic_id === topicId ? 'selected' : '' %> value="<%= topicId %>"><%= name %></option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+            <button type="submit" class="btn btn-space btn-primary">Thêm / Cập nhật</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('../components/Footer/MainLibraries'); %>
+<%- include('../components/Footer/index'); %>
+<%- include('../components/Footer/DataTable'); %>
+<script src="/js/Category.js"></script>

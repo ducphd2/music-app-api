@@ -1,0 +1,13 @@
+<% if (errorMessage[0]) { %>
+  <div class="alert alert-danger" role="alert">
+      <%= errorMessage[0] %> 
+  </div>
+<% } else if (successMessage[0]) { %>
+  <div class="alert alert-primary" role="alert">
+      <%= successMessage[0] %> 
+  </div>
+<% } %>
+
+<div id="ui-error" style="display: none;" class="alert alert-danger" role="alert">
+  <%= errorMessage[0] %> 
+</div>

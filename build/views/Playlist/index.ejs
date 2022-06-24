@@ -1,0 +1,66 @@
+
+<%- include('../components/Header/index'); %>
+<%- include('../components/NavBar/index'); %>
+<%- include('../components/SideBar/index'); %>
+
+<div class="dashboard-wrapper">
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Danh sách phát</h2>
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item active" aria-current="page">Danh sách phát</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="/auth/playlist/tao-moi" class="btn btn-space btn-primary">Thêm danh sách</a>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered first" id="playlist-list-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Tên danh sách</th>
+                                    <th class="text-center">Thumbnail</th>
+                                    <th class="text-center">Cập nhật</th>
+                                    <th ></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (Array.isArray(payload)) {
+                                    for( let index = 0; index < payload.length; index++ )
+                                    { %>
+                                        <tr>
+                                            <td class="text-center"><%= index %></td>
+                                            <td class="cell-name"><%= payload[index].name %> </td>
+                                            <td class="text-center">
+                                                <img class="cell-image" src="<%= payload[index].thumbnail || '/assets/images/avatar-1.jpg' %>" alt="">
+                                            </td>
+                                            <td class="text-center"><%= payload[index].updatedAt %></td>
+                                            <td class="text-center cell-action">
+                                                <a href="/auth/playlist/tao-moi?id=<%= payload[index].id; %>">Chi tiết</a>
+                                            </td>
+                                        </tr>
+                                    <% }
+                                } %>
+                            <tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+</div>
+
+<%- include('../components/Footer/MainLibraries'); %>
+<%- include('../components/Footer/index'); %>
+<%- include('../components/Footer/DataTable'); %>
+<script src="/js/Playlist.js"></script>

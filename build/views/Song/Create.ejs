@@ -1,0 +1,134 @@
+
+<%- include('../components/Header/index'); %>
+<%- include('../components/NavBar/index'); %>
+<%- include('../components/SideBar/index'); %>
+
+<% 
+  const {
+    title,
+    album_id,
+    playlist_id,
+    artists,
+    thumbnail,
+    category_id,
+    link,
+    id,
+  } = payload;
+%> 
+
+<div class="dashboard-wrapper">
+  <div class="container-fluid dashboard-content">
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="page-header">
+          <div class="page-breadcrumb">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/auth/bai-hat" class="breadcrumb-link">Danh sách bài hát</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tạo mới - Chỉnh sửa bài hát</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div> 
+    </div>
+    <%- include('../components/Message/index'); %>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
+      <% if (id) { %>
+        <form id="deleteForm" method="POST" action="/auth/bai-hat/xoa?id=<%= id %>"></form>
+      <% } %> 
+      <form class="needs-validation" id="setting-form" method="POST" onsubmit="submitSong(event);" action="/auth/bai-hat/tao-moi">
+        <input type="hidden" id="id" name="id" value="<%= id %>">
+        <div class="form-group row">
+          <label class="col-12 col-sm-3 col-form-label text-sm-right">Tên bài hát</label>
+          <div class="col-12 col-sm-8 col-lg-6">
+            <input type="text" class="form-control" id="title" required name="title" value="<%= title %>">
+          </div>
+        </div>
+        
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Nghệ sĩ</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+              <input type="text" class="form-control" id="artists" required name="artists" value="<%= artists %>">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Thumbnail</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+              <div>
+                <input type="text" class="form-control" id="thumbnail" required onchange="changeThumbnail(event);" name="thumbnail" value="<%= thumbnail %>"> 
+              </div>
+              <br />
+              <div>
+                <img width="100" id="thumbnail-img" src="<%= thumbnail || '/assets/images/avatar-1.jpg' %>" alt="">
+              </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Link bài hát</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+              <input type="text" class="form-control" id="link" required name="link" value="<%= link %>">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Album</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+                <select id="album_id" name="album_id" class="form-control">
+                  <option value="">Chọn album</option>
+                    <% for( let i = 0; i < albums.length; i++ ) { 
+                        const { id: albumId, name } = albums[i];
+                    %>
+                        <option <%= album_id === albumId ? 'selected' : '' %> value="<%= albumId %>"><%= name %></option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Thể loại</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+                <select id="category_id" name="category_id" class="form-control">
+                  <option value="">Chọn thể loại</option>
+                    <% for( let i = 0; i < categories.length; i++ ) { 
+                        const { id: categoryId, name } = categories[i];
+                    %>
+                        <option <%= category_id === categoryId ? 'selected' : '' %> value="<%= categoryId %>"><%= name %></option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Playlist</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+                <select id="playlist_id" name="playlist_id" class="form-control">
+                  <option value="">Chọn playlist</option>
+                    <% for( let i = 0; i < playlists.length; i++ ) { 
+                        const { id: playlistId, name } = playlists[i];
+                    %>
+                        <option <%= playlist_id === playlistId ? 'selected' : '' %> value="<%= playlistId %>"><%= name %></option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+            <% if (id) { %>
+                <a class="btn btn-space btn-danger non-link text-light" onclick="handleDelete(event);">Xóa bài hát</a>
+            <% } %>
+            <button type="submit" class="btn btn-space btn-primary">Thêm / Cập nhật</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('../components/Footer/MainLibraries'); %>
+<%- include('../components/Footer/index'); %>
+<%- include('../components/Footer/DataTable'); %>
+<script src="/js/Song.js"></script>
