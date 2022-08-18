@@ -1,6 +1,6 @@
 .env
 node_modules/
-logs/*
+**/logs/*
 dist/*
 .idea/
 yarn-error.log
@@ -8,3 +8,4 @@ yarn-error.log
 storage/logs/*
 storage/tmp/*
 airdropData/*
+*.log
