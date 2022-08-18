@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const db = require('../../../config/database.config')
+const Schema = mongoose.Schema
 
 const trackSchema = new Schema(
   {
@@ -13,7 +14,7 @@ const trackSchema = new Schema(
     },
     artists: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Artist",
+      ref: 'Artist',
       require: true,
     },
     thumbnail: {
@@ -31,19 +32,21 @@ const trackSchema = new Schema(
     },
     album_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Album",
+      ref: 'Album',
     },
     playlist_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Playlist",
+      ref: 'Playlist',
     },
     genre_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Genre",
+      ref: 'Genre',
       require: true,
     },
   },
   { timestamps: true }
-);
+)
 
-module.exports = mongoose.model("Track", trackSchema);
+trackSchema.index({ name: 1, genre_id: 1, playlist_id: 1, album_id: 1 })
+
+module.exports = db.model('Track', trackSchema)
