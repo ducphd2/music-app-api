@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const db = require('../../../config/database.config')
+const Schema = mongoose.Schema
 
 const userSchema = new Schema(
   {
@@ -12,7 +13,7 @@ const userSchema = new Schema(
     },
     bio: {
       type: String,
-      default: "",
+      default: '',
       trim: true,
       maxLength: 250,
     },
@@ -22,8 +23,6 @@ const userSchema = new Schema(
       required: true,
       maxLength: 40,
       unique: true,
-      match:
-        /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
     },
     password: {
       type: String,
@@ -33,19 +32,20 @@ const userSchema = new Schema(
     },
     profilePicture: {
       type: String,
-      default: "person.png",
+      default: 'person.png',
     },
     activityStatus: {
       type: String,
-      default: "offline",
+      default: 'offline',
     },
     activated: {
       type: Boolean,
-      default: process.env.ENABLE_SEND_EMAIL === "true" ? false : true,
     },
-    role: { type: ["user", "admin"], default: "user" },
+    role: { type: ['user', 'admin'], default: 'user' },
   },
   { timestamps: true }
-);
+)
 
-module.exports = mongoose.model("User", userSchema);
+userSchema.index({ email: 1 }, { partialFilterExpression: { email: { $exists: true } } })
+
+module.exports = db.model('User', userSchema)

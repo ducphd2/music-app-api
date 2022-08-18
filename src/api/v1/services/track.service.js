@@ -1,40 +1,31 @@
-const Track = require("../models/track.model");
+const Track = require('../models/track.model')
 
 // TODO: api track
 
+let result
 module.exports = {
   createTrack: async (data) => {
-    return await Track.create(data);
+    result = await Track.create(data)
+    return result
   },
 
   getTrackById: async (id) => {
-    return await Track.findById(id);
+    return Track.findById(id)
   },
 
   getAllTrack: async () => {
-    return await Track.find();
+    return Track.find()
   },
 
   getFavoriteTracks: async () => {
-    return await Track.find({ like: { $gt: 1 } })
-      .sort({ like: "desc" })
-      .limit(10);
+    return Track.find({ like: { $gt: 1 } })
+      .sort({ like: 'desc' })
+      .limit(10)
   },
 
   updateLikeForTrack: async (id) => {
-    const x = await Track.findById(id, { like: 8, _id: 0 });
-
-    await Track.findByIdAndUpdate(id, {
-      $set: {
-        like: (
-          parseInt(Object.values(Object.values(x)[2])[0]) +
-          parseInt(req.body.like)
-        ).toString(),
-      },
-    });
-
-    console.log(error);
+    const x = await Track.findById(id, { like: 8, _id: 0 })
   },
 
   searchByKeywords: async () => {},
-};
+}
