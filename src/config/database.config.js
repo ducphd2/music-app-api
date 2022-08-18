@@ -1,24 +1,24 @@
-const mongoose = require("mongoose");
-require("dotenv").config();
+const mongoose = require('mongoose')
+require('dotenv').config()
 
-const connectDatabase = async () => {
-  const mongoDbUrl =
-    process.env.MONGO_ATLAS_URL ??
-    `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}`;
-  console.log(`Connecting to ${mongoDbUrl}`);
+mongoose.connect(process.env.MONGO_URI)
+const db = mongoose.connection
 
-  await mongoose
-    .connect(mongoDbUrl, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
-    .then(() => {
-      console.log("Successfully connected to the database");
-    })
-    .catch((err) => {
-      console.log(`Could not connect to the database. Exiting now...\n${err}`);
-      process.exit(1);
-    });
-};
+db.on('connected', function () {
+  console.log(`Successfully connected to the database ${this.name}`)
+})
 
-module.exports = connectDatabase;
+db.on('disconnected', function () {
+  console.log(`Disconnect from the database:: ${this.name}`)
+})
+
+db.on('error', (error) => {
+  console.log(`Error when trying to connect to the database:: ${JSON.stringify(error)}`)
+})
+
+process.on('SIGINT', async () => {
+  await db.close()
+  process.exit(0)
+})
+
+module.exports = db

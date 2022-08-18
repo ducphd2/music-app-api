@@ -1,5 +1,10 @@
-*.copy/
-node_modules/
 .env
-*.log
-*.http
+node_modules/
+logs/*
+dist/*
+.idea/
+yarn-error.log
+.vscode/
+storage/logs/*
+storage/tmp/*
+airdropData/*
