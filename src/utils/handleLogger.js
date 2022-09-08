@@ -1,7 +1,9 @@
+import * as rTracer from 'cls-rtracer'
+import path from 'path'
 import winston, { format } from 'winston'
 import DailyRotateFile from 'winston-daily-rotate-file'
-import path from 'path'
-import * as rTracer from 'cls-rtracer'
+
+const prefixPath = path.resolve(__dirname).includes('logs') ? '../' : ''
 
 const loggerFormatter = format.printf(({ level, message, originalTimestamp, ...metadata }) => {
   const rid = rTracer.id()
