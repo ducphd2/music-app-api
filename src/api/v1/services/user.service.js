@@ -1,7 +1,7 @@
 const User = require("../models/user.model");
 const createError = require("http-errors");
-const { encrypt, compare } = require("../helpers/handlePassword");
-const { signAccessToken } = require("../helpers/handleJwt");
+const { encrypt, compare } = require("../utils/handlePassword");
+const { signAccessToken } = require("../utils/handleJwt");
 
 // TODO: api user and auth
 

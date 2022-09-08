@@ -1,17 +1,17 @@
-const express = require("express");
-const router = express.Router();
+import { Router } from 'express'
+const router = Router()
 
-const checkAuth = require("../middleware/checkAuth");
+import checkAuth from '../middleware/checkAuth'
 
-const trackController = require("../controllers/track.controller");
+// import { getTrackById, getAllTrack, getFavoriteTracks, createTrack, updateLikeForTrack, searchByKeywords } from '../controllers/track.controller'
 
-router.use(checkAuth);
+router.use(checkAuth)
 
-router.get("/:id", trackController.getTrackById);
-router.get("/", trackController.getAllTrack);
-router.get("/favoriteTracks", trackController.getFavoriteTracks);
-router.post("/", trackController.createTrack);
-router.patch("/updateLikeForTrack", trackController.updateLikeForTrack);
-router.post("/searchByKeywords", trackController.searchByKeywords);
+router.get('/:id', getTrackById)
+router.get('/', getAllTrack)
+router.get('/favoriteTracks', getFavoriteTracks)
+router.post('/', createTrack)
+router.patch('/updateLikeForTrack', updateLikeForTrack)
+router.post('/searchByKeywords', searchByKeywords)
 
-module.exports = router;
+export default router
