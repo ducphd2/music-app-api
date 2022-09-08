@@ -1,4 +1,4 @@
-const Track = require('../models/track.model')
+const Track = require('../models/Song')
 
 // TODO: api track
 

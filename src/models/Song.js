@@ -1,8 +1,7 @@
-const mongoose = require('mongoose')
-const db = require('../../../config/database.config')
-const Schema = mongoose.Schema
+import mongoose from 'mongoose'
+import mongooseConnection from '@root/config/mongo'
 
-const trackSchema = new Schema(
+const Song = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -24,29 +23,28 @@ const trackSchema = new Schema(
     link: {
       type: String,
       required: true,
-      trim: true,
     },
     like: {
-      type: String,
-      trim: true,
+      type: Number,
+      default: 0,
     },
-    album_id: {
+    albumId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Album',
     },
-    playlist_id: {
+    playlistId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Playlist',
     },
-    genre_id: {
+    genreId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Genre',
-      require: true,
     },
   },
-  { timestamps: true }
+  {timestamps: true}
 )
 
-trackSchema.index({ name: 1, genre_id: 1, playlist_id: 1, album_id: 1 })
+Song.index({name: 1, genreId: 1, playlistId: 1, albumId: 1})
 
-module.exports = db.model('Track', trackSchema)
+export default mongooseConnection.model('Song', Song)
+
