@@ -1,21 +1,12 @@
+import { createSong, getAllSong } from '@root/controllers/songController'
+import { auth } from '@root/middleware/auth'
 import { Router } from 'express'
-import {
-  createTrack,
-  getAllTrack,
-  getFavoriteTracks,
-  getTrackById,
-  updateLikeForTrack,
-} from '@root/controllers/songController'
-// import { authMiddleware } from '@root/middleware/checkAuth'
 
 const router = Router()
 
-// router.use(authMiddleware)
+router.use(auth)
 
-router.get('/:id', getTrackById)
-router.get('/', getAllTrack)
-router.get('/favoriteTracks', getFavoriteTracks)
-router.post('/', createTrack)
-router.patch('/updateLikeForTrack', updateLikeForTrack)
+router.get('/', getAllSong)
+router.post('/', createSong)
 
 module.exports = router

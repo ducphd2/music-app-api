@@ -93,6 +93,8 @@ export const SUCCESS_CODE = {
 }
 
 export const SUCCESS_MESSAGE = {
+  SUCCESS: 'Success',
   SUCCESS_CREATED_USER: 'Created user successfully',
+  SUCCESS_CREATED_SONG: 'Created song successfully',
   LOGGED_IN: 'Logged in successfully',
 }

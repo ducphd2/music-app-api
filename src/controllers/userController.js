@@ -102,6 +102,14 @@ export const login = async (req, res) => {
       })
     }
     const accessToken = await getAccessToken(email)
+    if (!accessToken) {
+      logger.error('Can not generate access token', { accessToken })
+      return httpResponse.failed(res, HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR, {
+        code: ERROR_CODE.INTERNAL_SERVER_ERROR,
+        message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
+      })
+    }
+
     return httpResponse.ok(res, HTTP_STATUS_CODE.OK, {
       code: SUCCESS_CODE.OK,
       message: SUCCESS_MESSAGE.LOGGED_IN,

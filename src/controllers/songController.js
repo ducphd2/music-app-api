@@ -1,51 +1,54 @@
-const trackService = require('../services/songService')
+import * as songService from '@root/services/songService'
+import { ERROR_CODE, ERROR_MESSAGE, HTTP_STATUS_CODE, SUCCESS_CODE, SUCCESS_MESSAGE } from '@root/utils/constants'
+import { logger } from '@root/utils/handleLogger'
+import * as httpResponse from '@root/utils/httpResponse'
 
-// TODO: api song
-
-module.exports = {
-  async createTrack (req, res) {
-    try {
-      const track = await trackService.createTrack(req.body)
-      res.status(201).json({ status: 201, message: 'success', track })
-    } catch (error) {
-      res.status(400).json(error)
+export const createSong = async (req, res) => {
+  try {
+    // TODO: Validate inputs
+    const song = await songService.create(req.body)
+    if (!song) {
+      logger.error('Could not create song')
+      return httpResponse.failed(res, HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR, {
+        code: ERROR_CODE.INTERNAL_SERVER_ERROR,
+        message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
+      })
     }
-  },
 
-  async getTrackById (req, res) {
-    try {
-      const track = await trackService.getTrackById(req.params.id)
-      res.status(201).json({ status: 201, message: 'success', track })
-    } catch (error) {
-      res.status(400).json(error)
-    }
-  },
+    return httpResponse.ok(res, HTTP_STATUS_CODE.CREATED, {
+      code: SUCCESS_CODE.CREATED,
+      message: SUCCESS_MESSAGE.SUCCESS_CREATED_SONG,
+    })
+  } catch (error) {
+    logger.error('Has error: ', { error })
+    return httpResponse.failed(res, HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR, {
+      code: ERROR_CODE.INTERNAL_SERVER_ERROR,
+      message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
+    })
+  }
+}
 
-  getAllTrack: async (req, res) => {
-    try {
-      const tracks = await trackService.getAllTrack()
-      res.status(200).json({ status: 200, message: 'success', tracks })
-    } catch (error) {
-      res.status(500).json(error)
+export const getAllSong = async (req, res) => {
+  try {
+    const songs = await songService.getAllSong()
+    if (!songs) {
+      logger.error('Could not get song')
+      return httpResponse.failed(res, HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR, {
+        code: ERROR_CODE.INTERNAL_SERVER_ERROR,
+        message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
+      })
     }
-  },
 
-  getFavoriteTracks: async (req, res) => {
-    try {
-      const tracks = await trackService.getFavoriteTracks()
-      res.status(200).json({ status: 200, message: 'success', tracks })
-    } catch (error) {
-      res.status(500).json(error)
-    }
-  },
-
-  updateLikeForTrack: async (req, res) => {
-    try {
-      const tracks = await trackService.updateLikeForTrack()
-      res.status(200).json({ status: 200, message: 'success', tracks })
-    } catch (error) {
-      res.status(500).json(error)
-      console.log(error)
-    }
-  },
+    return httpResponse.ok(res, HTTP_STATUS_CODE.OK, {
+      code: SUCCESS_CODE.OK,
+      message: SUCCESS_MESSAGE.SUCCESS,
+      songs,
+    })
+  } catch (error) {
+    logger.error('Has error: ', { error })
+    return httpResponse.failed(res, HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR, {
+      code: ERROR_CODE.INTERNAL_SERVER_ERROR,
+      message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
+    })
+  }
 }

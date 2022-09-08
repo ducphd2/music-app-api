@@ -12,8 +12,7 @@ const Song = new mongoose.Schema(
       require: true,
     },
     artists: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Artist',
+      type: String,
       require: true,
     },
     thumbnail: {
@@ -41,10 +40,9 @@ const Song = new mongoose.Schema(
       ref: 'Genre',
     },
   },
-  {timestamps: true}
+  { timestamps: true }
 )
 
-Song.index({name: 1, genreId: 1, playlistId: 1, albumId: 1})
+Song.index({ name: 1, genreId: 1, playlistId: 1, albumId: 1 })
 
 export default mongooseConnection.model('Song', Song)
-

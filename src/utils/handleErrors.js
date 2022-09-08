@@ -1,4 +1,5 @@
 import { HTTP_REQUEST_CONSTANTS, HTTP_ERROR_MESSAGES } from '@root/utils/constants'
+import { logger } from '@root/utils/handleLogger'
 
 export const handleRouteError = (err, req, res) => {
   logger.error('Could not perform this task!', { context: { err } })
