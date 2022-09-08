@@ -1,5 +1,5 @@
-const { handleHTTPError } = require('../helpers/handleErrors')
-const { verifyToken } = require('../helpers/handleJwt')
+const { handleHTTPError } = require('../utils/handleErrors')
+const { verifyToken } = require('../utils/handleJwt')
 
 /**
  * Protect access to specified routes
