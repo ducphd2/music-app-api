@@ -1,0 +1,29 @@
+.DS_Store
+
+# dotenv environment variables file
+.env
+
+# Dependency directories
+node_modules/
+
+# logs file
+logs/*
+
+dist/*
+
+.idea/
+
+.auth
+
+dump.rdb
+
+/**/*openapi.json
+/**/*auth-documentation.html
+
+yarn-error.log
+.vscode/
+storage/logs/*
+storage/tmp/*
+
+!.gitkeep
+system.config.js

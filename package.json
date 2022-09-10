@@ -1,0 +1,50 @@
+{
+  "name": "api_music_app",
+  "version": "0.0.1",
+  "description": "API Music App",
+  "author": "ducph",
+  "scripts": {
+    "dev": "nodemon --exec babel-node index.js",
+    "build": "rm -rf .auth && babel -d .auth . -s --ignore node_modules --copy-files && rm -rf .auth/.git && cp .env .auth/",
+    "start": "node index.js",
+    "lint": "eslint --ext .js --ignore-path ./auth --ignore-path .gitignore .",
+    "test": "NODE_ENV=test jest"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/node": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "file-loader": "^6.2.0",
+    "nodemon": "^2.0.14",
+    "prettier": "^2.4.1"
+  },
+  "dependencies": {
+    "@babel/core": "^7.16.0",
+    "abi-decoder": "^2.4.0",
+    "argon2": "^0.28.7",
+    "cls-rtracer": "^2.6.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "ethers": "^5.5.1",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "express-rest-routerss": "^1.0.0",
+    "express-winston": "^4.2.0",
+    "helmet": "^6.0.0",
+    "ioredis": "^4.28.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.12",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.7.5",
+    "validatorjs": "^3.22.1",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.5"
+  }
+}
