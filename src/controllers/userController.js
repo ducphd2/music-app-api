@@ -4,7 +4,7 @@ import { ERROR_CODE, ERROR_MESSAGE, HTTP_STATUS_CODE, SUCCESS_CODE, SUCCESS_MESS
 import { getAccessToken } from '@root/utils/handleJwt'
 import { logger } from '@root/utils/handleLogger'
 import * as httpResponse from '@root/utils/httpResponse'
-import { getHashedPassword, verifyPassword } from '@root/utils/userUtils'
+import { getHashedPassword, verifyPassword } from '@root/utils/passwordUtils'
 import { isValidEmail, isValidPassword } from '@root/utils/validatorsUtils'
 
 export const createUser = async (req, res) => {
