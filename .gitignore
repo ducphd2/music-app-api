@@ -27,3 +27,5 @@ storage/tmp/*
 
 !.gitkeep
 system.config.js
+.build/
+build/
