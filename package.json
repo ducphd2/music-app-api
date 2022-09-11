@@ -5,7 +5,7 @@
   "author": "ducph",
   "scripts": {
     "dev": "nodemon --exec babel-node index.js",
-    "build": "rm -rf .auth && babel -d .auth . -s --ignore node_modules --copy-files && rm -rf .auth/.git && cp .env .auth/",
+    "build": "rm -rf .build && babel -d .build . -s --ignore node_modules --copy-files && rm -rf .build/.git && cp .env .build/",
     "start": "node index.js",
     "lint": "eslint --ext .js --ignore-path ./auth --ignore-path .gitignore .",
     "test": "NODE_ENV=test jest"
