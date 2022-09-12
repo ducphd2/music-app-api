@@ -31,11 +31,11 @@ export const createSong = async (req, res) => {
 export const getAllSong = async (req, res) => {
   try {
     const songs = await songService.getAllSong()
-    if (!songs) {
-      logger.error('Could not get song')
-      return httpResponse.failed(res, HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR, {
-        code: ERROR_CODE.INTERNAL_SERVER_ERROR,
-        message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
+    if (!songs.length) {
+      logger.error('Empty song')
+      return httpResponse.failed(res, HTTP_STATUS_CODE.NOT_FOUND, {
+        code: ERROR_CODE.EMPTY,
+        message: ERROR_MESSAGE.EMPTY,
       })
     }
 

@@ -45,9 +45,10 @@ export const ERROR_CODE = {
 
   UNAUTHORIZED: 30001,
   EXIST_USER: 30002,
+  INVALID_INPUT: 30003,
+  EMPTY: 30004,
   INTERNAL_SERVER_ERROR: 31000,
   // Bad Request
-  INVALID_INPUT: 30001,
 
   // Bad Gateway
   UNAVAILABLE_WEATHER_DATA: 30002,
@@ -69,6 +70,7 @@ export const ERROR_CODE = {
 export const ERROR_MESSAGE = {
   UNAUTHORIZED: 'Unauthorized',
   EXIST_USER: 'User is already exists',
+  EMPTY: 'Empty',
 
   UNAVAILABLE_WEATHER_DATA: 'Weather data not available',
   INVALID_WEATHER_DATA: 'Invalid weather data',
