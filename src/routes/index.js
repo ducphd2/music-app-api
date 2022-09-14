@@ -3,11 +3,13 @@ import { Router } from 'express'
 
 const authRouter = require('./auth')
 const songRouter = require('./song')
+const topicRouter = require('./topic')
 
 const route = Router()
 
 route.use('/auth', authRouter)
 route.use('/song', songRouter)
+route.use('/topic', topicRouter)
 
 // Capture 404 errors
 app.use((req, res) => {
