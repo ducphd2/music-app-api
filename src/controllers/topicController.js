@@ -1,5 +1,5 @@
 import * as topicService from '@root/services/topicService'
-import { ERROR_CODE, ERROR_MESSAGE, HTTP_STATUS_CODE, SUCCESS_CODE, SUCCESS_MESSAGE } from '@root/utils/constants'
+import { RESPONSE_CODE, RESPONSE_MESSAGE, HTTP_STATUS_CODE, SUCCESS_CODE, SUCCESS_MESSAGE } from '@root/utils/constants'
 import { logger } from '@root/utils/handleLogger'
 import * as httpResponse from '@root/utils/httpResponse'
 
@@ -10,8 +10,8 @@ export const create = async (req, res) => {
     if (!topic) {
       logger.error('Could not create topic')
       return httpResponse.failed(res, HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR, {
-        code: ERROR_CODE.INTERNAL_SERVER_ERROR,
-        message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
+        code: RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+        message: RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
       })
     }
 
@@ -22,8 +22,8 @@ export const create = async (req, res) => {
   } catch (error) {
     logger.error('Has error: ', { error })
     return httpResponse.failed(res, HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR, {
-      code: ERROR_CODE.INTERNAL_SERVER_ERROR,
-      message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      message: RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
     })
   }
 }
@@ -34,8 +34,8 @@ export const get = async (req, res) => {
     if (!topic) {
       logger.error('Could not get topic')
       return httpResponse.failed(res, HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR, {
-        code: ERROR_CODE.INTERNAL_SERVER_ERROR,
-        message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
+        code: RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+        message: RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
       })
     }
 
@@ -47,8 +47,8 @@ export const get = async (req, res) => {
   } catch (error) {
     logger.error('Has error: ', { error })
     return httpResponse.failed(res, HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR, {
-      code: ERROR_CODE.INTERNAL_SERVER_ERROR,
-      message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      message: RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
     })
   }
 }
@@ -59,8 +59,8 @@ export const getAllTopics = async (req, res) => {
     if (!topics) {
       logger.error('Could not get topics')
       return httpResponse.failed(res, HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR, {
-        code: ERROR_CODE.INTERNAL_SERVER_ERROR,
-        message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
+        code: RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+        message: RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
       })
     }
 
@@ -72,8 +72,8 @@ export const getAllTopics = async (req, res) => {
   } catch (error) {
     logger.error('Has error: ', { error })
     return httpResponse.failed(res, HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR, {
-      code: ERROR_CODE.INTERNAL_SERVER_ERROR,
-      message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      message: RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
     })
   }
 }
@@ -85,8 +85,8 @@ export const update = async (req, res) => {
     if (!topic) {
       logger.error('Could not update topic')
       return httpResponse.failed(res, HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR, {
-        code: ERROR_CODE.INTERNAL_SERVER_ERROR,
-        message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
+        code: RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+        message: RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
       })
     }
 
@@ -98,8 +98,8 @@ export const update = async (req, res) => {
   } catch (error) {
     logger.error('Has error: ', { error })
     return httpResponse.failed(res, HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR, {
-      code: ERROR_CODE.INTERNAL_SERVER_ERROR,
-      message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      message: RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
     })
   }
 }
@@ -111,8 +111,8 @@ export const remove = async (req, res) => {
     if (!topic) {
       logger.error('Could not remove topic', { topic })
       return httpResponse.failed(res, HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR, {
-        code: ERROR_CODE.INTERNAL_SERVER_ERROR,
-        message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
+        code: RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+        message: RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
       })
     }
 
@@ -124,8 +124,8 @@ export const remove = async (req, res) => {
   } catch (error) {
     logger.error('Has error: ', { error })
     return httpResponse.failed(res, HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR, {
-      code: ERROR_CODE.INTERNAL_SERVER_ERROR,
-      message: ERROR_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      message: RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
     })
   }
 }
