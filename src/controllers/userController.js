@@ -1,6 +1,6 @@
 import * as userService from '@root/services/userService'
 import { getUserByFilter } from '@root/services/userService'
-import { RESPONSE_CODE, RESPONSE_MESSAGE, HTTP_STATUS_CODE, SUCCESS_CODE as RESPONSE_CODE, SUCCESS_MESSAGE as RESPONSE_MESSAGE } from '@root/utils/constants'
+import { RESPONSE_CODE, RESPONSE_MESSAGE, HTTP_STATUS_CODE } from '@root/utils/constants'
 import { getAccessToken } from '@root/utils/handleJwt'
 import { logger } from '@root/utils/handleLogger'
 import * as httpResponse from '@root/utils/httpResponse'

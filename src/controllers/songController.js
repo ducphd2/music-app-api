@@ -1,5 +1,5 @@
 import * as songService from '@root/services/songService'
-import { RESPONSE_CODE, RESPONSE_MESSAGE, HTTP_STATUS_CODE, SUCCESS_CODE, SUCCESS_MESSAGE } from '@root/utils/constants'
+import { HTTP_STATUS_CODE, RESPONSE_CODE, RESPONSE_MESSAGE, SUCCESS_CODE, SUCCESS_MESSAGE } from '@root/utils/constants'
 import { logger } from '@root/utils/handleLogger'
 import * as httpResponse from '@root/utils/httpResponse'
 
@@ -30,7 +30,7 @@ export const createSong = async (req, res) => {
 
 export const getAllSong = async (req, res) => {
   try {
-    const songs = await songService.getAllSong()
+    const songs = await songService.getAll()
     return httpResponse.ok(res, HTTP_STATUS_CODE.OK, {
       code: SUCCESS_CODE.OK,
       message: SUCCESS_MESSAGE.SUCCESS,

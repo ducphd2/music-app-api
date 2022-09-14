@@ -1,5 +1,5 @@
 import * as topicService from '@root/services/topicService'
-import { RESPONSE_CODE, RESPONSE_MESSAGE, HTTP_STATUS_CODE, SUCCESS_CODE, SUCCESS_MESSAGE } from '@root/utils/constants'
+import { HTTP_STATUS_CODE, RESPONSE_CODE, RESPONSE_MESSAGE } from '@root/utils/constants'
 import { logger } from '@root/utils/handleLogger'
 import * as httpResponse from '@root/utils/httpResponse'
 
@@ -16,8 +16,8 @@ export const create = async (req, res) => {
     }
 
     return httpResponse.ok(res, HTTP_STATUS_CODE.CREATED, {
-      code: SUCCESS_CODE.CREATED,
-      message: SUCCESS_MESSAGE.SUCCESS,
+      code: RESPONSE_CODE.CREATED,
+      message: RESPONSE_MESSAGE.SUCCESS,
     })
   } catch (error) {
     logger.error('Has error: ', { error })
@@ -40,8 +40,8 @@ export const get = async (req, res) => {
     }
 
     return httpResponse.ok(res, HTTP_STATUS_CODE.OK, {
-      code: SUCCESS_CODE.OK,
-      message: SUCCESS_MESSAGE.SUCCESS,
+      code: RESPONSE_CODE.OK,
+      message: RESPONSE_MESSAGE.SUCCESS,
       topic,
     })
   } catch (error) {
@@ -65,8 +65,8 @@ export const getAllTopics = async (req, res) => {
     }
 
     return httpResponse.ok(res, HTTP_STATUS_CODE.OK, {
-      code: SUCCESS_CODE.OK,
-      message: SUCCESS_MESSAGE.SUCCESS,
+      code: RESPONSE_CODE.OK,
+      message: RESPONSE_MESSAGE.SUCCESS,
       topics,
     })
   } catch (error) {
@@ -91,8 +91,8 @@ export const update = async (req, res) => {
     }
 
     return httpResponse.ok(res, HTTP_STATUS_CODE.OK, {
-      code: SUCCESS_CODE.OK,
-      message: SUCCESS_MESSAGE.SUCCESS,
+      code: RESPONSE_CODE.OK,
+      message: RESPONSE_MESSAGE.SUCCESS,
       topic,
     })
   } catch (error) {
@@ -117,8 +117,8 @@ export const remove = async (req, res) => {
     }
 
     return httpResponse.ok(res, HTTP_STATUS_CODE.OK, {
-      code: SUCCESS_CODE.OK,
-      message: SUCCESS_MESSAGE.SUCCESS,
+      code: RESPONSE_CODE.OK,
+      message: RESPONSE_MESSAGE.SUCCESS,
       topic,
     })
   } catch (error) {

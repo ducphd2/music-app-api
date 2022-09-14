@@ -1,4 +1,4 @@
-import { RESPONSE_MESSAGE, HTTP_STATUS_CODE, RESPONSE_CODE } from '@root/utils/constants'
+import { HTTP_STATUS_CODE, RESPONSE_CODE, RESPONSE_MESSAGE } from '@root/utils/constants'
 import { Router } from 'express'
 
 const authRouter = require('./auth')
