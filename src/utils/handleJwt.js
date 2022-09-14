@@ -7,6 +7,7 @@ export const getAccessToken = async (email) => {
     return jwt.sign({ email }, SECRET_KEY, { expiresIn: '1h' })
   } catch (error) {
     logger.error(error)
+    throw error
   }
 }
 

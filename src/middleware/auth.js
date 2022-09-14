@@ -1,4 +1,4 @@
-import { ERROR_CODE, ERROR_MESSAGE, HTTP_STATUS_CODE } from '@root/utils/constants'
+import { RESPONSE_CODE, RESPONSE_MESSAGE, HTTP_STATUS_CODE } from '@root/utils/constants'
 import { verifyToken } from '@root/utils/handleJwt'
 import { logger } from '@root/utils/handleLogger'
 import * as httpResponse from '@root/utils/httpResponse'
@@ -10,8 +10,8 @@ const verifySession = async (req, res, next) => {
     if (!token) {
       logger.error('Empty access token', { token })
       return httpResponse.failed(res, HTTP_STATUS_CODE.BAD_REQUEST, {
-        code: ERROR_CODE.UNAUTHORIZED,
-        message: ERROR_MESSAGE.UNAUTHORIZED,
+        code: RESPONSE_CODE.UNAUTHORIZED,
+        message: RESPONSE_MESSAGE.UNAUTHORIZED,
       })
     }
 
@@ -19,8 +19,8 @@ const verifySession = async (req, res, next) => {
     if (!isValidAccessToken) {
       logger.error('Invalid access token', { token })
       return httpResponse.failed(res, HTTP_STATUS_CODE.BAD_REQUEST, {
-        code: ERROR_CODE.UNAUTHORIZED,
-        message: ERROR_MESSAGE.UNAUTHORIZED,
+        code: RESPONSE_CODE.UNAUTHORIZED,
+        message: RESPONSE_MESSAGE.UNAUTHORIZED,
       })
     }
     return next()
