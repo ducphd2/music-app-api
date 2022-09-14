@@ -5,7 +5,9 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 
 import route from '@root/routes'
+import { HTTP_STATUS_CODE, RESPONSE_CODE, RESPONSE_MESSAGE } from '@root/utils/constants'
 import { logger } from '@root/utils/handleLogger'
+import * as httpResponse from '@root/utils/httpResponse'
 
 const app = express()
 
@@ -20,6 +22,13 @@ app.use('/api', route)
 process.on('uncaughtException', (error) => {
   logger.error(error)
 })
+
+app.use('*', (req, res) =>
+  httpResponse.failed(res, HTTP_STATUS_CODE.NOT_FOUND, {
+    code: RESPONSE_CODE.NOT_FOUND,
+    message: RESPONSE_MESSAGE.NOT_FOUND,
+  })
+)
 
 const port = process.env.PORT || 5000
 const host = process.env.HOST || 'localhost'
