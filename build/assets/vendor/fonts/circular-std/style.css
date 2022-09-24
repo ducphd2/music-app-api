@@ -14,10 +14,10 @@ src: local('Circular Std Book'), url('Oswald-Regular.ttf') format('ttf');
 
 
 @font-face {
-font-family: 'Circular Std Medium';
+font-family: 'Roboto';
 font-style: normal;
 font-weight: normal;
-src: local('Circular Std Medium'), url('Oswald-Medium.ttf') format('ttf');
+src: local('Roboto'), url('Oswald-Medium.ttf') format('ttf');
 }
 
 
