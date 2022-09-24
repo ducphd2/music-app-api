@@ -57,19 +57,20 @@
             <label class="col-12 col-sm-3 col-form-label text-sm-right">Thumbnail</label>
             <div class="col-12 col-sm-8 col-lg-6">
               <div>
-                <input type="text" class="form-control" id="thumbnail" required onchange="changeThumbnail(event);" name="thumbnail" value="<%= thumbnail %>"> 
+                <input type="file" accept="image/png, image/jpg" class="form-control" id="thumbnail" required onchange="changeThumbnail(event);" name="thumbnail" value="<%= thumbnail %>"> 
               </div>
               <br />
               <div>
-                <img width="100" id="thumbnail-img" src="<%= thumbnail || '/assets/images/avatar-1.jpg' %>" alt="">
+                <img width="100" id="thumbnail-img" src="<%= thumbnail || '/assets/images/img.png' %>" alt="">
               </div>
             </div>
         </div>
 
         <div class="form-group row">
-            <label class="col-12 col-sm-3 col-form-label text-sm-right">Link bài hát</label>
+            <label class="col-12 col-sm-3 col-form-label text-sm-right">Chọn bài hát</label>
             <div class="col-12 col-sm-8 col-lg-6">
-              <input type="text" class="form-control" id="link" required name="link" value="<%= link %>">
+              <input type="file" accept=".mp3" class="form-control" id="link" required name="link" value="<%= link %>">
+              <!-- <input type="text" class="form-control" id="link" required name="link" value="<%= link %>"> -->
             </div>
         </div>
 

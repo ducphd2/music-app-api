@@ -1995,14 +1995,17 @@ Pageheader
 -------------------------*/
 
 .page-header {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .page-breadcrumb {}
 
-.page-breadcrumb .breadcrumb {}
+.page-breadcrumb .breadcrumb {
+}
 
-.page-breadcrumb .breadcrumb-item {}
+.page-breadcrumb .breadcrumb-item {
+    font-family: 'Roboto';
+}
 
 .page-breadcrumb .breadcrumb-link {
     color: #a6a6b7;
@@ -2016,14 +2019,14 @@ Pageheader
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    padding: 0px;
-    margin-bottom: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     list-style: none;
     background-color: transparent;
     border-radius: 0px;
     border-top: 1px solid #e0e4ef;
-    padding-top: 10px;
-    font-size: 12px;
+    font-size: 14px;
+    padding: 10px 0;
 }
 
 .page-breadcrumb .breadcrumb .breadcrumb-item+.breadcrumb-item::before {

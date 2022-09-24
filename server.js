@@ -2,10 +2,10 @@ const express = require('express')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const path = require('path')
+const cors = require('cors')
 const flush = require('connect-flash')
-const { SECRET } = require('./constants')
-const { initDb } = require('./app/config')
 const middleware = require('./app/config/middleware')
+require('dotenv').config()
 
 const app = express()
 
@@ -23,7 +23,7 @@ const generateRouters = require('./app/routers')
 app.set('views', path.join(__dirname, 'build/views'))
 app.set('view engine', 'ejs')
 
-app.use(express.json())
+app.use(express.json(), cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 
@@ -34,7 +34,7 @@ app.use('/assets', express.static(path.join(__dirname, 'build/assets')))
 
 app.use(
   session({
-    secret: SECRET,
+    secret: process.env.JWT_SECRET,
     cookie: {
       maxAge: 60000,
     },
@@ -64,7 +64,6 @@ app.use('/api', playListRouters)
 app.use('/api', songRouters)
 
 generateRouters(app)
-initDb()
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
