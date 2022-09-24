@@ -19,46 +19,40 @@
                 </div>
             </div>
         </div>
-        <a href="/auth/bai-hat/tao-moi" class="btn btn-space btn-primary">Thêm bài hát mới</a>
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered first" id="song-list-table">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">#</th>
-                                    <th class="text-center">Tên bài hát</th>
-                                    <th class="text-center">Nghệ sĩ</th>
-                                    <th class="text-center">Thumbnail</th>
-                                    <th class="text-center">Cập nhật</th>
-                                    <th ></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% if (Array.isArray(payload)) {
-                                    for( let index = 0; index < payload.length; index++ )
-                                    { %>
-                                        <tr>
-                                            <td class="text-center"><%= index %></td>
-                                            <td class="cell-name"><%= payload[index].title %> </td>
-                                            <td class="text-center cell-other"><%= payload[index].artists %></td>
-                                            <td class="text-center">
-                                                <img class="cell-image" src="<%= payload[index].thumbnail || '/assets/images/avatar-1.jpg' %>" alt="">
-                                            </td>
-                                            <td class="text-center"><%= payload[index].updatedAt %></td>
-                                            <td class="text-center cell-action">
-                                                <a href="/auth/bai-hat/tao-moi?id=<%= payload[index].id; %>">Chi tiết</a>
-                                            </td>
-                                        </tr>
-                                    <% }
-                                } %>
-                            <tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>   
+        <a href="/auth/bai-hat/tao-moi" class="btn btn-space btn-primary mb-4">Thêm bài hát mới</a>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered first" id="song-list-table">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Tên bài hát</th>
+                        <th class="text-center">Nghệ sĩ</th>
+                        <th class="text-center">Thumbnail</th>
+                        <th class="text-center">Cập nhật</th>
+                        <th ></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (Array.isArray(payload)) {
+                        for( let index = 0; index < payload.length; index++ )
+                        { %>
+                            <tr>
+                                <td class="text-center"><%= index %></td>
+                                <td class="cell-name"><%= payload[index].title %> </td>
+                                <td class="text-center cell-other"><%= payload[index].artists %></td>
+                                <td class="text-center">
+                                    <img class="cell-image" src="<%= payload[index].thumbnail || '/assets/images/avatar-1.jpg' %>" alt="">
+                                </td>
+                                <td class="text-center"><%= payload[index].updatedAt %></td>
+                                <td class="text-center cell-action">
+                                    <a class="btn btn-primary" href="/auth/bai-hat/tao-moi?id=<%= payload[index].id; %>">Chi tiết</a>
+                                </td>
+                            </tr>
+                        <% }
+                    } %>
+                <tbody>
+            </table>
+        </div>
     </div>
 </div>
 
