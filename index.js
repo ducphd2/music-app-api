@@ -68,8 +68,13 @@ generateRouters(app)
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
 
-const PORT = process.env.PORT || 9000
-const HOST = process.env.HOST || 'localhost'
-app.listen(PORT, () => {
-  console.log(`Listening: http://${HOST}:${PORT}`)
+process.on('uncaughtException', (err) => {
+  console.log('Has uncaught exception', err)
+  process.exit(1)
+})
+
+const port = process.env.PORT || 9000
+const host = process.env.HOST || 'localhost'
+app.listen(port, () => {
+  console.log(`Listening: http://${host}:${port}`)
 })

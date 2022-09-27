@@ -44,8 +44,26 @@ const handleDelete = () => {
   }
 }
 
-const submitSong = (event) => {
+const submitSong = async (event) => {
   event.preventDefault()
+  const thumbnailElement = event.target.querySelector('#thumbnail_fake')
+  const songElement = event.target.querySelector('#link_fake')
+  const thumbnailFile = thumbnailElement.files[0]
+  const songFile = songElement.files[0]
+  const thumbnailUploadRequest = await getSignedRequest(thumbnailFile)
+  const songUploadRequest = await getSignedRequest(songFile)
+  const thumbnailUploaded = await uploadFile(thumbnailFile, thumbnailUploadRequest.signedRequest)
+  const songUploaded = await uploadFile(songFile, songUploadRequest.signedRequest)
+
+  if (songUploaded.status === 200 && thumbnailUploaded.status === 200) {
+    document.getElementById('thumbnail').value = thumbnailUploadRequest.url
+    document.getElementById('link').value = songUploadRequest.url
+  }
+  console.log({
+    thumbnailElement: document.getElementById('thumbnail'),
+    songElement: document.getElementById('link'),
+  })
+
   const errors = Object.keys(songFields).reduce((r, key) => {
     const { parent, text } = songFields[key]
     let hasError = false

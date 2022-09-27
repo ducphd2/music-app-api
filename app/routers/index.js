@@ -21,6 +21,10 @@ const adminRouters = {
     prefix: '/auth/topic',
     route: require('../controller/admin/topic.controller'),
   },
+  upload: {
+    prefix: '/upload',
+    route: require('../controller/admin/uploadController'),
+  },
 }
 
 const clientRouters = {
