@@ -64,3 +64,33 @@ const submitSong = (event) => {
     event.target.submit()
   }
 }
+
+;(() => {
+  const a = document.querySelectorAll('.upload_file')
+  const b = document.querySelector('.upload_file')
+  console.log(a)
+  console.log(b)
+  a.forEach((ele) => {
+    ele.onchange = () => {
+      const files = a.files
+      console.log(files)
+      const file = files[0]
+      if (file == null) {
+        return alert('No file selected.')
+      }
+      // getSignedRequest(file)
+    }
+  })
+})()
+// const a = document.querySelectorAll('.upload_file')
+// a.onchange = () => {
+//   const a = a
+//   const files = a.files
+//   console.log(files)
+//   const file = files[0]
+//   if (file == null) {
+//     return alert('No file selected.')
+//   }
+//   // getSignedRequest(file)
+// }
+// })()

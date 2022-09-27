@@ -57,7 +57,7 @@
             <label class="col-12 col-sm-3 col-form-label text-sm-right">Thumbnail</label>
             <div class="col-12 col-sm-8 col-lg-6">
               <div>
-                <input type="file" accept="image/png, image/jpg" class="form-control" id="thumbnail" required onchange="changeThumbnail(event);" name="thumbnail" value="<%= thumbnail %>"> 
+                <input type="file" accept="image/png, image/jpg" class="form-control upload_file" id="thumbnail" required onchange="changeThumbnail(event)" name="thumbnail" value="<%= thumbnail %>"> 
               </div>
               <br />
               <div>
@@ -69,8 +69,7 @@
         <div class="form-group row">
             <label class="col-12 col-sm-3 col-form-label text-sm-right">Chọn bài hát</label>
             <div class="col-12 col-sm-8 col-lg-6">
-              <input type="file" accept=".mp3" class="form-control" id="link" required name="link" value="<%= link %>">
-              <!-- <input type="text" class="form-control" id="link" required name="link" value="<%= link %>"> -->
+              <input type="file" accept=".mp3" class="form-control upload_file" id="link" required name="link" value="<%= link %>">
             </div>
         </div>
 
@@ -121,7 +120,7 @@
             <% if (id) { %>
                 <a class="btn btn-space btn-danger non-link text-light" onclick="handleDelete(event);">Xóa bài hát</a>
             <% } %>
-            <button type="submit" class="btn btn-space btn-primary">Thêm / Cập nhật</button>
+            <button type="submit" class="btn btn-space btn-primary upsert-data">Thêm / Cập nhật</button>
           </div>
         </div>
       </form>
