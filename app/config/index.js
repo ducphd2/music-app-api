@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { SECRET } = require('../../constants')
 const User = require('../models/user.model')
 
 const generatePassword = async (str) => {
@@ -15,7 +14,9 @@ const generateToken = (username, uid) => {
     id: uid,
   }
 
-  const token = jwt.sign(userForToken, SECRET, { expiresIn: 60 * 60 * 24 })
+  const token = jwt.sign(userForToken, process.env.JWT_SECRET, {
+    expiresIn: 60 * 60 * 24,
+  })
   return token
 }
 
