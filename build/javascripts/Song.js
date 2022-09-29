@@ -16,11 +16,11 @@ const songFields = {
   },
   thumbnail: {
     parent: '',
-    text: 'Thumbnail',
+    text: 'Ảnh đại diện',
   },
   link: {
     parent: '',
-    text: 'Link',
+    text: 'Link bài hát',
   },
   album_id: {
     parent: '',
@@ -44,9 +44,28 @@ const handleDelete = () => {
   }
 }
 
-const submitSong = (event) => {
-  console.log(event)
+const submitSong = async (event) => {
   event.preventDefault()
+  const thumbnailElement = event.target.querySelector('#thumbnail_fake')
+  const songElement = event.target.querySelector('#link_fake')
+  const thumbnailFile = thumbnailElement.files[0]
+  const songFile = songElement.files[0]
+  const thumbnailUploadRequest = await getSignedRequest(thumbnailFile)
+  const songUploadRequest = await getSignedRequest(songFile)
+  const thumbnailUploaded = await uploadFile(
+    thumbnailFile,
+    thumbnailUploadRequest.signedRequest
+  )
+  const songUploaded = await uploadFile(
+    songFile,
+    songUploadRequest.signedRequest
+  )
+
+  if (songUploaded.status === 200 && thumbnailUploaded.status === 200) {
+    document.getElementById('thumbnail').value = thumbnailUploadRequest.url
+    document.getElementById('link').value = songUploadRequest.url
+  }
+
   const errors = Object.keys(songFields).reduce((r, key) => {
     const { parent, text } = songFields[key]
     let hasError = false
@@ -66,32 +85,12 @@ const submitSong = (event) => {
   }
 }
 
-;(() => {
-  const a = document.querySelectorAll('.upload_file')
-  const b = document.querySelector('.upload_file')
-  console.log(a)
-  console.log(b)
-  a.forEach((ele) => {
-    ele.onchange = () => {
-      const files = a.files
-      console.log(files)
-      const file = files[0]
-      if (file == null) {
-        return alert('No file selected.')
-      }
-      // getSignedRequest(file)
-    }
-  })
-})()
-// const a = document.querySelectorAll('.upload_file')
-// a.onchange = () => {
-//   const a = a
-//   const files = a.files
-//   console.log(files)
-//   const file = files[0]
-//   if (file == null) {
-//     return alert('No file selected.')
-//   }
-//   // getSignedRequest(file)
-// }
-// })()
+const a = () => {
+  const a = document.getElementById('link_fake')
+  a.value = 'helloworld'
+}
+a()
+
+const displayLink = (link) => {
+  const a = document.
+}

@@ -37,7 +37,7 @@
       <% if (id) { %>
         <form id="deleteForm" method="POST" action="/auth/bai-hat/xoa?id=<%= id %>"></form>
       <% } %> 
-      <form class="needs-validation" id="setting-form" method="POST" onsubmit="submitSong(event);" action="/auth/bai-hat/tao-moi">
+      <form class="needs-validation" id="setting-form" method="POST" onsubmit="submitSong(event)" action="/auth/bai-hat/tao-moi">
         <input type="hidden" id="id" name="id" value="<%= id %>">
         <div class="form-group row">
           <label class="col-12 col-sm-3 col-form-label text-sm-right">Tên bài hát</label>
@@ -57,11 +57,12 @@
             <label class="col-12 col-sm-3 col-form-label text-sm-right">Thumbnail</label>
             <div class="col-12 col-sm-8 col-lg-6">
               <div>
-                <input type="file" accept="image/png, image/jpg" class="form-control upload_file" id="thumbnail" required onchange="changeThumbnail(event)" name="thumbnail" value="<%= thumbnail %>"> 
+                <input type="file" accept="image/*" class="form-control upload_file" id="thumbnail_fake" required onchange="changeThumbnail(event)"> 
+                <input type="text" id="thumbnail" name="thumbnail" class="link_tiny" value="<%= thumbnail %>"  style="display: none;">
               </div>
               <br />
-              <div>
-                <img width="100" id="thumbnail-img" src="<%= thumbnail || '/assets/images/img.png' %>" alt="">
+              <div class="image_container">
+                <img class="image_children" id="thumbnail-img" src="<%= thumbnail || '/assets/images/img.png' %>" alt="">
               </div>
             </div>
         </div>
@@ -69,7 +70,8 @@
         <div class="form-group row">
             <label class="col-12 col-sm-3 col-form-label text-sm-right">Chọn bài hát</label>
             <div class="col-12 col-sm-8 col-lg-6">
-              <input type="file" accept=".mp3" class="form-control upload_file" id="link" required name="link" value="<%= link %>">
+              <input type="file" accept=".mp3" class="form-control upload_file" id="link_fake" required>
+              <input type="text" id="link" name="link" class="link_tiny" value="<%= link %>" style="display: none;">
             </div>
         </div>
 

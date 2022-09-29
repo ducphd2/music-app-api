@@ -50,32 +50,26 @@ const hideAlert = () => {
 const changeThumbnail = (event) => {
   const reader = new FileReader()
   reader.onload = function (evt) {
-    document.getElementById('thumbnail-img').src = evt.target.result || '/assets/images/avatar-1.jpg';
+    document.getElementById('thumbnail-img').src =
+      evt.target.result || '/assets/images/avatar-1.jpg'
   }
   reader.readAsDataURL(event.target.files[0])
 }
 
 hideAlert()
 
-const getSignedRequest = (file) => {
-  axios
-    .get(`/upload?file-name=${file.name}&file-type=${file.type}`)
-    .then((response) => {
-      console.log('Success to get presigned URL ', { response })
-      uploadFile(file, response.data.signedRequest, response.data.url)
-    })
-    .catch((error) => console.error(error))
+const getSignedRequest = async (file) => {
+  const response = await fetch(
+    `/upload?file-name=${file.name}&file-type=${file.type}`
+  )
+  return response.json()
 }
 
-const uploadFile = (file, signedRequest, url) => {
-  console.log(file)
+const uploadFile = async (file, signedRequest) => {
   const options = {
     headers: {
       'Content-Type': file.type,
     },
   }
-  axios
-    .put(signedRequest, file, options)
-    .then((result) => console.log('success to upload file', { url }))
-    .catch((error) => console.error(error))
+  return axios.put(signedRequest, file, options)
 }
