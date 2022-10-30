@@ -45,7 +45,7 @@ const renderViewPage =
 const initDb = async () => {
   const password = await generatePassword('123')
   const user = new User({
-    username: 'nguyenvantuan',
+    username: 'phanhoainam',
     password,
   })
 

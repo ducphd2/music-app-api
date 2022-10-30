@@ -33,7 +33,7 @@
       <% if (id) { %>
         <form id="deleteForm" method="POST" action="/auth/album/xoa?id=<%= id %>"></form>
       <% } %> 
-      <form class="needs-validation" id="setting-form" method="POST" onsubmit="submitCategory(event);" action="/auth/album/tao-moi">
+      <form class="needs-validation" id="setting-form" method="POST" onsubmit="submitAlbum(event);" action="/auth/album/tao-moi">
         <input type="hidden" id="id" name="id" value="<%= id %>">
         <div class="form-group row">
           <label class="col-12 col-sm-3 col-form-label text-sm-right">Tên Album</label>
@@ -53,12 +53,17 @@
             <label class="col-12 col-sm-3 col-form-label text-sm-right">Thumbnail</label>
             <div class="col-12 col-sm-8 col-lg-6">
               <div>
-                <input type="text" class="form-control" id="thumbnail" required onchange="changeThumbnail(event);" name="thumbnail" value="<%= thumbnail %>"> 
+                <input type="file" onchange="changeImage(event);" accept="image/*" class="form-control upload_file" id="link_fake" required>
+                <input type="text" id="thumbnail" name="thumbnail" class="link_tiny" value="<%= thumbnail %>" style="display: none;">
+                <!-- <input type="text" class="form-control" id="thumbnail" required onchange="changeThumbnail(event);" name="thumbnail" value="<%= thumbnail %>">  -->
               </div>
               <br />
-              <div>
-                <img width="100" id="thumbnail-img" src="<%= thumbnail || '/assets/images/avatar-1.jpg' %>" alt="">
+              <div class="image_container">
+                <img class="image_children" id="thumbnail-img" src="<%= thumbnail || '/assets/images/img.png' %>" alt="">
               </div>
+              <!-- <div>
+                <img width="100" id="thumbnail-img" src="<%= thumbnail || '/assets/images/avatar-1.jpg' %>" alt="">
+              </div> -->
             </div>
         </div>
 

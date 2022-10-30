@@ -8,8 +8,7 @@ document.querySelector('.loader').style.display = 'none'
 
 const logout = (event) => {
   event.preventDefault()
-  document.cookie =
-    'Authorization=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+  document.cookie = 'Authorization=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'
   window.location.href = '/dang-nhap'
 }
 
@@ -50,8 +49,7 @@ const hideAlert = () => {
 const changeThumbnail = (event) => {
   const reader = new FileReader()
   reader.onload = function (evt) {
-    document.getElementById('thumbnail-img').src =
-      evt.target.result || '/assets/images/avatar-1.jpg'
+    document.getElementById('thumbnail-img').src = evt.target.result || '/assets/images/avatar-1.jpg'
   }
   reader.readAsDataURL(event.target.files[0])
 }
@@ -59,9 +57,10 @@ const changeThumbnail = (event) => {
 hideAlert()
 
 const getSignedRequest = async (file) => {
-  const response = await fetch(
-    `/upload?file-name=${file.name}&file-type=${file.type}`
-  )
+  const fileName = file.name
+  const fileExtension = fileName.slice(fileName.lastIndexOf('.'))
+  const fileType = file.type
+  const response = await fetch(`/upload?file-name=${fileName}&file-type=${fileType}&file-extension=${fileExtension}`)
   return response.json()
 }
 
@@ -72,4 +71,12 @@ const uploadFile = async (file, signedRequest) => {
     },
   }
   return axios.put(signedRequest, file, options)
+}
+
+const changeImage = (event) => {
+  const reader = new FileReader()
+  reader.onload = function (evt) {
+    document.getElementById('thumbnail-img').src = evt.target.result || '/assets/images/avatar-1.jpg'
+  }
+  reader.readAsDataURL(event.target.files[0])
 }

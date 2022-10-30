@@ -51,6 +51,7 @@ const submitSong = async (event) => {
   const thumbnailFile = thumbnailElement.files[0]
   const songFile = songElement.files[0]
   const thumbnailUploadRequest = await getSignedRequest(thumbnailFile)
+  console.log('thumbnailUploadRequest', thumbnailUploadRequest)
   const songUploadRequest = await getSignedRequest(songFile)
   const thumbnailUploaded = await uploadFile(
     thumbnailFile,
@@ -83,14 +84,4 @@ const submitSong = async (event) => {
   } else {
     event.target.submit()
   }
-}
-
-const a = () => {
-  const a = document.getElementById('link_fake')
-  a.value = 'helloworld'
-}
-a()
-
-const displayLink = (link) => {
-  const a = document.
 }
