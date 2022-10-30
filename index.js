@@ -19,6 +19,7 @@ const playListRouters = require('./app/routers/playlist')
 const songRouters = require('./app/routers/song')
 
 const generateRouters = require('./app/routers')
+const { initDb } = require('./app/config')
 
 app.set('views', path.join(__dirname, 'build/views'))
 app.set('view engine', 'ejs')
@@ -55,6 +56,7 @@ app.get('/auth', (req, res) => {
 
 // Call connect database
 connectDB()
+initDb()
 
 app.use('/api', topicRouters)
 app.use('/api', categoryRouters)
